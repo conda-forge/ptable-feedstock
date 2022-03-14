@@ -11,7 +11,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   entry_points:
     - ptable = prettytable.cli:main
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
@@ -19,9 +19,9 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python >=3.4
   run:
-    - python
+    - python >=3.4
   run_constrained:
     - prettytable >=9999
 
@@ -33,7 +33,7 @@ test:
 
 about:
   home: https://github.com/kxxoling/PTable
-  license: BSD
+  license: BSD-3-Clause
   license_family: BSD
   license_file: COPYING
   summary: A simple Python library for easily displaying tabular data in a visually appealing ASCII table format
