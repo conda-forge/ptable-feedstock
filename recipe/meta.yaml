@@ -6,12 +6,12 @@ package:
   version: "{{ version }}"
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: aa7fc151cb40f2dabcd2275ba6f7fd0ff8577a86be3365cd3fb297cbe09cc292
 
 build:
   noarch: python
-  number: 1
+  number: 2
   entry_points:
     - ptable = prettytable.cli:main
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv "
@@ -19,13 +19,15 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.4
+    - python {{ python_min }}
   run:
-    - python >=3.4
+    - python >={{ python_min }}
   run_constrained:
     - prettytable >=9999
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - prettytable
   commands:
